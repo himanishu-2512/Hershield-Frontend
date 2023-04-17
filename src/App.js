@@ -14,6 +14,7 @@ import Helpline from "./Pages/Helpline";
 import Community from "./Pages/Community";
 import Admin1 from "./Pages/Admin1"
 import Admin2 from "./Pages/Admin2"
+import AdminLogin from "./Pages/AdminLogin"
 import SOSData from './component/Admin/adminsos'
 import Complains from './component/Admin/Usercomplain'
 import SOS from './Pages/SOS'
@@ -45,24 +46,24 @@ function App() {
 							)
 						}
 					/>
+					
 					<Route path="/Home" element={<Homepage/>} />
 					<Route path="/LoginForm" element={<LoginForm setLoginUser={setLoginUser} />} />
 					<Route path="/Forgotpassword" element={<ForgotPass />} />
 					<Route path="/Changepassword" element={<ChangePass />} />
 					<Route path="/RegisterComplain" element={<RegisterComplain/>}/>
 					<Route path="/WitnessComplain" element={<WitnessComplain/>}/>
-					<Route path="/ViewRegisterComplain" element={<ViewRegisterComplain/>}/>
-					<Route path="/ViewWitnessComplain" element={<ViewWitnessComplain/>}/>
+					<Route path="/ViewRegisterComplain/:id" element={<ViewRegisterComplain/>}/>
+					<Route path="/ViewWitnessComplain/:id" element={<ViewWitnessComplain/>}/>
 					<Route path="/Resources" element={<Resources/>}/>
 					<Route path="/Helpline" element={<Helpline/>}/>
 					<Route path="/Community" element={<Community/>}/>
 					<Route path="/Profile" element={<Profile />} />
-					<Route path="/Admin1" element={<Admin1/>}/>
-					<Route path="/Admin2" element={<Admin2/>}/>
+
 					<Route path="/Complains" element={<Complains/>}/>
-					<Route path="/Dashboard" element={<Admin1/>} />
-					<Route path="/Admin1" element={<Admin1/>}/>
-					<Route path="/Admin2" element={<Admin2/>}/>
+					<Route path="/AdminLogin" element={<AdminLogin/>} />
+					<Route path="/Dashboard" element={<Admin1/>}/>
+
                     <Route path='/SOSData' element ={<SOSData/>}/>
 					<Route path='/SOS' element ={<SOS/>}/>
 					<Route path="/Adhaar" element={<Adhaar/>}/>

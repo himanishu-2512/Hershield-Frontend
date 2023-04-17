@@ -1,8 +1,28 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import Header from "../component/Home/Header";
+import {useParams} from "react-router-dom"
+import axios from "axios";
+import { useState } from "react";
 
-function ViewComplain() {
+export default function ViewComplain() {
+
+const {id}=useParams()
+console.log(id)
+const obj={
+  "userId":`${id}`
+}
+const[user, setUser]=useState({});
+const handleChang= async ()=>{
+
+  await axios.post("https://hershield-backend-production.up.railway.app/api/complaint/complaint/one",obj).then((res) => {
+    setUser(res.data.complaint)
+    console.log(res.data.complaint)
+})}
+
+handleChang()
+console.log("hbha",user)
+
   return (
     <Box>
       <Header />
@@ -57,13 +77,13 @@ function ViewComplain() {
             </Typography>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="Name: Kunal Chaurasia"  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
-          <TextField disabled placeholder="hi" variant="outlined" color='secondary' size= "small"/>
+          <TextField disabled placeholder={`Name: ${user.name}`}  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Phone: ${user.phone}`}  variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Email: ${user.email}`} variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size="small" />
-          <TextField disabled placeholder="hi" variant="outlined" color='secondary' size= "small"/>
+          <TextField disabled placeholder={`Designation: ${user.designation}`}  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Adhaar Phone: ${user.contactno}`} variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           <Box
             sx={{
@@ -89,17 +109,17 @@ function ViewComplain() {
             </Typography>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size="small" />
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
-          <TextField disabled placeholder="hi" id="fullwidth"  variant="outlined" color='secondary' size="small" />
+          <TextField disabled placeholder={`Name: ${user.organisationname}`}  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Phone: ${user.organisationphone}`}  variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Email: ${user.organisationemail}`} id="fullwidth"  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
+          <TextField disabled placeholder={`Head: ${user.organisationhead}`}  variant="outlined" color='secondary' size= "small"sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`State: ${user.organisationstate}`}  variant="outlined" color='secondary' size= "small"sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`District: ${user.organisationdistrict}`}  variant="outlined" color='secondary' size= "small"sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="hi" multiline rows={3}  variant="outlined" color='secondary' size= "small"/>
+          <TextField disabled placeholder={` Address: ${user.organisationaddress}`} multiline rows={3}  variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
 
           <Box
@@ -126,9 +146,9 @@ function ViewComplain() {
             </Typography>
           </Box>
           <Box sx={{ margin:'20px', display:'flex','& > :not(style)': {m: 2, width:'30%'},}}>
-          <TextField disabled placeholder="hi" variant="outlined" color='secondary' size="small" />
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size= "small"/>
-          <TextField disabled placeholder="hi"  variant="outlined" color='secondary' size="small"/>
+          <TextField disabled placeholder={`Name: ${user.offendersname}`}variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Designation: ${user.offendersdesignation}`} variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
+          <TextField disabled placeholder={`Working Relationship: ${user.offendersworkingrelationship}`}  variant="outlined" color='secondary' size="small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           
           <Box
@@ -156,20 +176,9 @@ function ViewComplain() {
           </Box>
           <Box sx={{display:'flex', width:'100%', }}>
           <Box sx={{ margin:'20px',width:'60%', display:'flex','& > :not(style)': {m: 2, width:'100%'},}}>
-          <TextField disabled placeholder="hi" multiline rows={3} variant="outlined" color='secondary' size= "small"/>
+          <TextField disabled placeholder={`Name: ${user.name}`} multiline rows={3} variant="outlined" color='secondary' size= "small" sx={{ "& fieldset": { border:'none'},input:{"&::placeholder": {opacity: 1}}}}/>
           </Box>
           <Box sx={{display:'flex', justifyContent:'center', width:'40%', alignItems:'center'}}>
-          <Button
-            variant="contained"
-            component="label"
-            color="secondary"
-          >
-            Upload Any Proof
-            <input
-              type="file"
-              hidden
-            />
-          </Button>
           </Box>
           </Box>
           <Box sx={{display:'flex', justifyContent:'center', m:'40px'}}>
@@ -180,4 +189,3 @@ function ViewComplain() {
     </Box>
   );
 }
- export default ViewComplain

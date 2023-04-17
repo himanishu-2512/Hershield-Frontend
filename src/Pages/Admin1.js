@@ -5,7 +5,7 @@ import UserComplaints from "../component/Admin/Usercomplain";
 import WitnessComplaints from "../component/Admin/WitnessComplain";
 import DashBoard from "../component/Admin/Dashboard";
 import SOS from "../component/Admin/adminsos";
-
+import axios from "axios";
 
 
 function Profile() {
@@ -38,6 +38,21 @@ function Profile() {
     setClicked4(true);
   };
 
+
+
+
+
+  var ans;
+  const [cum, setCum]=React.useState()
+  const handleChange= async ()=>{
+			await axios.get("https://hershield-backend-production.up.railway.app/api/complaint/all").then((res) => {
+console.log("0")
+ans=res.data.complaint
+
+        console.log("ans",ans)
+      })
+  }
+   handleChange();
   return (
     
 
@@ -199,7 +214,7 @@ function Profile() {
         </Box>
         <Box sx={{ flex: 6 }}>
           {clicked1 && <DashBoard />}
-          {clicked2 && <UserComplaints />}
+          {clicked2 && <UserComplaints ans/>}
           {clicked3 && <WitnessComplaints />}
           {clicked4 && <SOS />}
         </Box>

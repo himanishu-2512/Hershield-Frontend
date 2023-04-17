@@ -110,7 +110,7 @@ function Profile() {
                   }}
                   color="#800080"
                 >
-                  <strong>Complain History</strong>
+                  <strong>User Complaints</strong>
                 </Typography>
               </Box>
             </Box>
@@ -146,7 +146,7 @@ function Profile() {
                   }}
                   color="#800080"
                 >
-                  <strong>Emergency Contacts</strong>
+                  <strong>Witness Complaints</strong>
                 </Typography>
               </Box>
             </Box>

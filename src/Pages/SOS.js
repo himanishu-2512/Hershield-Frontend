@@ -6,15 +6,25 @@ import CloseIcon from '@mui/icons-material/Close';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { MuiOtpInput } from 'mui-one-time-password-input'
-
+import axios from "axios";
 function SOS() {
 
-
+const user = JSON.parse(window.localStorage.getItem('user'))
     const [otp, setOtp] = React.useState('')
 
     const handleChange = (newValue) => {
       setOtp(newValue)
     }
+    
+
+
+    const handleChang= async ()=>{
+
+        await axios.post("https://hershield-backend-production.up.railway.app/api/auth/sos", sos).then((res) => {
+  })
+}
+
+
 
     const style = {
         position: 'absolute',
@@ -40,12 +50,18 @@ function SOS() {
     const [lat, setLat]= useState('');
     const [lan, setLan] =useState('');
     useEffect(() => {
-        navigator.geolocation.watchPosition((position) =>{
+        navigator.geolocation.getCurrentPosition((position) =>{
             setLat(position.coords.latitude);
             setLan(position.coords.longitude);
         })
         console.log(lat,lan);
-    })
+    },[])
+    const [sos, setsos] = useState({
+		userId:`${user._id}`,
+		latitude:`${lat}` ,
+        longitude:`${lan}`
+	});
+    handleChang();
   return (
     <Box>
         {hide &&

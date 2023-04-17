@@ -42,9 +42,13 @@ function ResponsiveAppBar() {
     window.localStorage.removeItem("isLoggedIn");
     window.localStorage.removeItem("isLoggedIn");
     Navigate("/Home");
+    window.location.reload();
   }
   const handleChange1 =()=>{
     Navigate("/Profile");
+  }
+  const handleLogin =()=>{
+    Navigate("/LoginForm");
   }
 
   return (
@@ -128,7 +132,7 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {!log && <Button sx={{ color:'black', mr:'2px'}} >Login</Button>}
+            {!log && <Button sx={{ color:'black', mr:'2px'}} onClick={ handleLogin } >Login</Button>}
             {log &&<Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar src="/static/images/avatar/2.jpg" />

@@ -2,17 +2,20 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Header from "../component/Home/Header";
 import Footer from "../component/Home/footer"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function RegisterComplain() {
-
+  // const userId=JSON.parse(window.localStorage.getItem('user'))
   const[complain, setComplain] =useState({
+    userId:`643bfe15b0d5afb55234a9ea`,
     name:"",
-    phone:"",
+    phone:0,
     email:'',
     designation:"",
-    contactno:'',
-    adhaar:'',
+    contactno:0,
+    adhaar:"",
     orgnisationname:'',
-    organisationphone:'',
+    organisationphone:0,
     organisationemail:'',
     oraginsationhead:'',
     oragnisationstate:'',
@@ -24,6 +27,8 @@ function RegisterComplain() {
     description:''
   })
 
+// console.log(userId._id);
+// setComplain({...complain,userId})
   const handleChange = (e) => {
 		e.preventDefault();
 		const { value, name } = e.target;
@@ -35,7 +40,15 @@ function RegisterComplain() {
 			};
 		});
 	};
-
+  const Navigate = useNavigate();
+  const handleSubmit = async (e) => {
+		e.preventDefault();
+			await axios.post("https://hershield-backend-production.up.railway.app/api/complaint/register",complain).then((res) => {
+				alert(res.data.message);
+				console.log(res)
+				Navigate("/Home");
+			});
+	};
   return (
     <Box>
       <Header />
@@ -206,7 +219,7 @@ function RegisterComplain() {
           </Box>
           </Box>
           <Box sx={{display:'flex', justifyContent:'center', m:'40px'}}>
-            <Button variant="contained" color="secondary">Submit</Button>
+            <Button onClick={handleSubmit} variant="contained" color="secondary">Submit</Button>
           </Box>
         </Box>
       </Box>
