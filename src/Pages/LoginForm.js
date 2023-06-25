@@ -64,7 +64,7 @@ const LoginForm = ({ setLoginUser }) => {
 			await axios.post("https://hershield-backend-production.up.railway.app/api/auth/register", newuser).then((res) => {
 				alert(res.data.message);
 				console.log(res)
-				Navigate("/verifyemail");
+				Navigate("/");
 			});
 		} else {
 			alert("Invalid Input");

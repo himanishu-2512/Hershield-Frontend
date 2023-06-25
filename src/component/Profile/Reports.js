@@ -11,7 +11,7 @@ const Users = () => {
           id: "google.com",
           name: 'Olivier',
           email:'sqjbsqi',
-          role: 'Back-end Developer',
+          role: 'Pending',
           active:'',
           createdAt:'121212'
         },
@@ -19,7 +19,7 @@ const Users = () => {
           id: "google.com",
           name: 'Olivier',
           email:'sqjbsqi',
-          role: 'Back-end Developer',
+          status:"In Progress",
           active:"",
           createdAt:'121212'
         },
@@ -27,7 +27,7 @@ const Users = () => {
           id: 3,
           name: 'Olivier',
           email:'sqjbsqi',
-          role: 'Back-end Developer',
+          status:"Completed",
           active:"",
           createdAt:'121212'
         },
